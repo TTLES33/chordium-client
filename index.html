@@ -1,0 +1,185 @@
+<html>
+    <head>
+        <script src="scripts/scriptsSettings.js?v=1.1.10"></script>
+        <script src="scripts/index.js?v=1.1.10"></script>
+        <script src="scripts/global.js?v=1.1.10"></script>
+        <script src="resources/allChords.js"></script>
+        <script src="scripts/diagramGenerator.js?v=1.1.10"></script>
+        <script src="https://omnibrain.github.io/svguitar/js/svguitar.umd.js"></script>
+
+        <link rel="stylesheet" href="styles/index.css?v=1.1.10">
+        <link rel="stylesheet" href="styles/chordSelection.css?v=1.1.10">
+        <title>Chordium</title>
+        <!--load umd script -->
+
+        <link rel="icon" type="image/x-icon" href="resources/chordiumLogoIcon.png?v=1.1.9">
+    </head>
+    <body>
+       
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+       
+        <!-- hidden from default-->
+          <div id="typeModal" class="modal">
+            <div class="moreTypes">
+                <div class="moreTypesHeader">
+                    <div class="alphabetSearch">
+                        <div class="alphabetLetter" onclick="moreTypesTypeSearch(this)">major</div >
+                        <div class="alphabetLetter" onclick="moreTypesTypeSearch(this)">minor</div >
+                        <div class="alphabetLetter" onclick="moreTypesTypeSearch(this)">suspended</div >
+                        <div class="alphabetLetter" onclick="moreTypesTypeSearch(this)">diminished</div >
+                        <div class="alphabetLetter" onclick="moreTypesTypeSearch(this)">augmented</div >
+                    </div>
+                    <input oninput="moreTypesSearch(this)" autocomplete="false" placeholder="Search" type="text" name="moreTypesSerach" class="moreTypesSerach" id="moreTypesSerach">
+                    <div onclick="closeModal();" class="closeButton">
+                        Close
+                    </div>
+                </div>
+           
+                <div id="chordSelectorTypesContainer" class="chordSelectorTypesContainer">
+
+                </div>
+            </div>
+        </div>
+         
+
+
+
+        <div id="instrumentModal" class="modal">
+            <div id="tuningSelector" class="instrumentContainer">
+                <div class="instrumentChange">
+                    Standart - E H D G B E
+                  </div>
+                  <div class="instrumentChange">
+                      Standart - E H D G B E
+                  </div>
+            </div>
+        </div>
+
+
+        <div class="mainContainer">
+          
+            <div class="firstContainer">
+                <div class="header">
+                    <img src="resources/chordiumLogo.png?v=1.1.9" class="logo" alt="">
+                </div>
+                <div id="instrumentSelector" class="instrumentSelector">
+                    <div class="section">
+                        <div class="sectionText">Instrument</div>
+                        <select  autocomplete="off" oninput="instrumentChange();" name="" id="instrumentSelectElement" class="instrumentSelectElement">
+                            <option value="guitar">Guitar</option>
+                            <option value="ukulele">Ukulele</option>
+                        </select>
+                    </div>
+                    <div class="section">
+                        <div class="sectionText">Tuning</div>
+           
+                        <input readonly type="text" onclick="openOtherTuningModal()" size="10" name="" id="instrumentTunings" class="instrumentSelectElement" value="standart">
+                        
+                        
+                    </div>
+                    <div class="section">
+                        <div class="moreSettingsButton" onclick="openMoreSettings();">Other</div>
+                    </div>
+                </div>
+
+                <div class="moreSettingsContainer" id="moreSettingsContainer">
+                    
+                </div>
+                <div class="topBarWhiteSpace"></div>
+            </div>
+       
+
+
+            <div class="chordSelector">
+       
+             
+                <div id="keySelector" name="test" class="selectKey">
+
+                        <div class="keyButton selectorButton  keyButtonSelected" onclick="keyChange(this.id);" id="C">C</div>
+                        <div class="keyButton selectorButton" onclick="keyChange(this.id);" id="C#">C#</div>
+                        <div class="keyButton selectorButton" onclick="keyChange(this.id);" id="D">D</div>
+                        <div class="keyButton selectorButton" onclick="keyChange(this.id);" id="D#">D#</div>
+                        <div class="keyButton selectorButton" onclick="keyChange(this.id);" id="E">E</div> 
+                        <div class="keyButton selectorButton" onclick="keyChange(this.id);" id="F">F</div> 
+                        <div class="keyButton selectorButton" onclick="keyChange(this.id);" id="F#">F#</div> 
+                        <div class="keyButton selectorButton" onclick="keyChange(this.id);" id="G">G</div> 
+                        <div class="keyButton selectorButton" onclick="keyChange(this.id);" id="G#">G#</div> 
+                        <div class="keyButton selectorButton" onclick="keyChange(this.id);" id="A">A</div> 
+                        <div class="keyButton selectorButton" onclick="keyChange(this.id);" id="A#">A#</div> 
+                        <div class="keyButton selectorButton" onclick="keyChange(this.id);" id="B/H">B/H</div> 
+
+
+                </div>
+            
+                <div id="typeSelector" class="selectKey">
+                    <div class="typeButton selectorButton typeButtonSelected" onclick="typeChange(this.id);" id="maj">maj</div>
+                    <div class="typeButton selectorButton" onclick="typeChange(this.id);" id="min">min</div>
+                    <div class="typeButton selectorButton" onclick="typeChange(this.id);" id="5">5</div>
+                    <div class="typeButton selectorButton" onclick="typeChange(this.id);" id="7">7</div> 
+                    <div class="typeButton selectorButton" onclick="typeChange(this.id);" id="maj7">maj7</div> 
+                    <div class="typeButton selectorButton" onclick="typeChange(this.id);" id="m7">m7</div>
+                    <div class="moreTypeButton" onclick="typeChange(this.id);" id="more">more</div> 
+                </div>
+
+             
+    
+            </div>
+           
+           
+
+
+            <div class="chordShower">
+                <div class="mainChordContainer">
+                    <div id="chordName" class="chordName"></div>
+                    <div id="chordInfo" class="chordInfo">
+                        <div class="chordTones">
+                            tones
+                            <div id="chordTones" style="padding-left: 15px; font-weight: bold;"></div>
+                        </div>
+                    </div>
+                    <div id="chordCanvas" class="chordCanvas">
+                    </div>
+                </div>
+                <div  class="chordNameAlternative">alternative:</div>
+                <div id="alternativeChordCanvas" class="alternativeChordCanvas">
+            
+                </div>
+            </div>
+                <div class="footer">
+    
+                    <div class="footer1">         
+                        <div>Chordium by TTLES</div>
+                        <div><a href="https://github.com/TTLES33/Chordium">Chordium Github repository</a></div>
+                        <div><a href="https://ttles.eu">ttles.eu</a></div>
+                    </div>
+                    
+                    <div class="footer2">
+                        <div>Used Resources</div>
+                        <div><a href="https://github.com/omnibrain/svguitar">SVGuitar</a></div>
+                        <div><a href="https://github.com/tonaljs/">tonal</a></div>
+                        <div><a href="https://en.wikipedia.org/wiki/Interval_(music)">Wikipedia - Interval</a></div>
+                        <div><a href="https://en.wikibooks.org/wiki/Music_Theory/Complete_List_of_Chord_Patterns">Wikibooks - Chord Patterns</a></div>
+                        <div><a href="https://fonts.google.com/specimen/Rubik">https://fonts.google.com/specimen/Rubik</a></div>
+                        <div><a href="https://fonts.google.com/specimen/Open+Sans">https://fonts.google.com/specimen/Open+Sans</a></div>
+                       
+                    </div>
+                  
+                    <div class="footer3">
+                        <div>Contact me:</div>
+                        <div><a href="https://github.com/TTLES33">GitHub</a></div>
+                        <div><a href="https://discordapp.com/users/556176731703345152">Discord</a></div>
+                        <div><a href="https://www.reddit.com/user/TTLES33">Reddit</a></div>
+                        <div><a href="https://www.linkedin.com/in/jan-grygar/">LinkedIn</a></div>
+                        <div><a href="mailto:chordium@protonmail.com">chordium@protonmail.com</a></div>
+                    </div>
+                </div>  
+        </div>
+
+        <div id="errorContainer" class="errorContainer">
+
+        </div>
+
+    </body>
+</html>
