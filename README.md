@@ -5,7 +5,7 @@
 > Web client for [chordium API](https://github.com/TTLES33/chordium)
 
 Web tool for finding all chord positions on guitar or other string instrument.
-Chordium is available on: [chordium.ttles.eu](https://github.com/TTLES33/chordium)
+Chordium is available on: [chordium.ttles.eu](https://chordium.ttles.eu/)
 
 
 ## Features:
